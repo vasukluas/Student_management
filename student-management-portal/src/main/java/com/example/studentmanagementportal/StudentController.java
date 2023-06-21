@@ -29,19 +29,39 @@ public class StudentController {
         return new ResponseEntity(s,HttpStatus.CREATED);
     }
     @GetMapping("/get/{id}/{message}")
-    public String getByPathvariable(@PathVariable("id")int admno,@PathVariable("message")String message){
-        return studentService.getByPathvariable(admno,message);
+    public ResponseEntity getByPathvariable(@PathVariable("id")int admno,@PathVariable("message")String message){
+        String s= studentService.getByPathvariable(admno,message);
+        return new ResponseEntity(s,HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/delete")
-    public String deleteStudent(@RequestParam("id")int admno){
-        return studentService.deleteStudent(admno);
+    public ResponseEntity deleteStudent(@RequestParam("id")int admno){
+        String s= studentService.deleteStudent(admno);
+        return new ResponseEntity(s,HttpStatus.NO_CONTENT);
     }
     @PutMapping("/put")
-    public Student updateStudentcourse(@RequestParam("id")int admno,@RequestParam("course")String newCourse){
-      return studentService.updateStudentcourse(admno,newCourse);
+    public ResponseEntity updateStudentcourse(@RequestParam("id")int admno,@RequestParam("course")String newCourse){
+      Student s= studentService.updateStudentcourse(admno,newCourse);
+        return new ResponseEntity(s,HttpStatus.OK);
     }
     @GetMapping("/getTotalStudents")
-    public int getTotalStudents(){
-   return studentService.getTotalStudents();
+    public ResponseEntity getTotalStudents(){
+   int n= studentService.getTotalStudents();
+        return new ResponseEntity(n,HttpStatus.ACCEPTED);
     }
+//    @GetMapping("/get/{id}/{message}")
+//    public String getByPathvariable(@PathVariable("id")int admno,@PathVariable("message")String message){
+//        return studentService.getByPathvariable(admno,message);
+//    }
+//    @DeleteMapping("/delete")
+//    public String deleteStudent(@RequestParam("id")int admno){
+//        return studentService.deleteStudent(admno);
+//    }
+//    @PutMapping("/put")
+//    public Student updateStudentcourse(@RequestParam("id")int admno,@RequestParam("course")String newCourse){
+//        return studentService.updateStudentcourse(admno,newCourse);
+//    }
+//    @GetMapping("/getTotalStudents")
+//    public int getTotalStudents(){
+//        return studentService.getTotalStudents();
+//    }
 }
